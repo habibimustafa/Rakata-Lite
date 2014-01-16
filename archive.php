@@ -1,4 +1,10 @@
-<?php get_header(); ?>
+<?php
+/**
+ * archive.php
+ * @package Rakata Lite
+ * @since Rakata Lite 0.0.1
+ */
+get_header(); ?>
 	<div id="inner">
 		<?php //get_sidebar('topside'); ?>
 		<div id="main">

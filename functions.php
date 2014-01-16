@@ -1,38 +1,57 @@
 <?php
+/**
+ * functions.php
+ * @package Rakata Lite
+ * @since Rakata Lite 0.0.1
+ */
 
-// Setting Content Width
-  global $content_width;
-  if ( !isset( $content_width ) ) $content_width = 960;
-
-// Add support for custom background
-$defbackground = array( 'default-color' => 'FFFFFF' );
-add_theme_support( 'custom-background', $defbackground );
-
-// Add support for Automatic Feed Link
-add_theme_support( 'automatic-feed-links' );
-
-// Add support for Primary Navigation
-if ( function_exists('register_nav_menus') ) {
-	register_nav_menus(array(
-		'rk-main-nav' => 'Primary Navigation'
-	));
+/**
+ * Enqueue scripts and styles
+ * @since Rakata Lite 0.0.3
+ */
+define( 'RAKATA', '0.0.3' );
+add_action( 'wp_enqueue_scripts', 'rakata_enqueue_scripts' );
+function rakata_enqueue_scripts() {
+	wp_enqueue_style( 'grid', get_template_directory_uri() . '/css/grid.css', array(), RAKATA);
+	wp_enqueue_style( 'rakata', get_template_directory_uri() . '/style.css', array(), RAKATA);
+    
+    if (!is_admin()) {
+        // comment out the next two lines to load the local copy of jQuery
+        wp_deregister_script('jquery');
+        wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', false, '1.10.2');
+        wp_enqueue_script('jquery');
+    }
+	
+    if ( is_singular() && comments_open() && get_option('thread_comments')) {
+	wp_enqueue_script('comment-reply');
+    }
 }
 
-// Add post thumbnails support
-if ( function_exists( 'add_theme_support' ) ) {
+/**
+ * Setup function
+ * @since Rakata Lite 0.0.3
+ */
+function rakata_setup() {
+	if ( ! isset( $content_width ) ) $content_width = 960;
+	load_theme_textdomain( 'rakata', get_template_directory() . '/languages' );
+	$defbackground = array( 'default-color' => 'EFEFEF' );
+	add_theme_support( 'custom-background', $defbackground );
+	add_theme_support( 'automatic-feed-links' );
 	add_theme_support( 'post-thumbnails' );
-}
-
-// Add image size
-if ( function_exists( 'add_image_size' ) ) {
 	add_image_size( 'full-size',  9999, 9999, false );
 	add_image_size( 'post-thumb',  80, 80, true );
 	add_image_size( 'post-single',  690, 372, true );
+	register_nav_menus( array(
+		'rakata-main-nav' => __( 'Primary Menu', 'rakata' ),
+	) );
 }
+add_action( 'after_setup_theme', 'rakata_setup' );
 
-// Add support for Sidebar
-if ( function_exists('register_sidebar') ) {
-	
+/**
+ * Register Sidebar
+ * @since Rakata Lite 0.0.3
+ */
+function rakata_widgets_init() {
 	register_sidebar(array('name'=>'Left Sidebar',
 	'id' => 'leftside',
 	'before_widget' => '<div id="%1$s" class="sideitem %2$s">',
@@ -40,8 +59,6 @@ if ( function_exists('register_sidebar') ) {
 	'before_title' => '<h3 class="sidetitle">',
 	'after_title' => '</h3>',
 	));
-
-	/* 
 	register_sidebar(array('name'=>'Top Sidebar',
 	'id' => 'topside',
 	'before_widget' => '<div id="%1$s" class="sideitem %2$s">',
@@ -49,8 +66,6 @@ if ( function_exists('register_sidebar') ) {
 	'before_title' => '<h3 class="sidetitle">',
 	'after_title' => '</h3>',
 	));
-	*/
-	
 	register_sidebar(array('name'=>'Bottom Sidebar',
 	'id' => 'botside',
 	'before_widget' => '<div id="%1$s" class="sideitem %2$s">',
@@ -58,14 +73,8 @@ if ( function_exists('register_sidebar') ) {
 	'before_title' => '<h3 class="sidetitle">',
 	'after_title' => '</h3>',
 	));
-	
 }
-
-function rakata_add_editor_styles() {
-    add_editor_style( 'editor-style.css' );
-}
-add_action( 'init', 'rakata_add_editor_styles' );
-
+add_action( 'widgets_init', 'rakata_widgets_init');
 
 // The Functions
 
@@ -101,9 +110,9 @@ function rk_logo(){
 
 // Menu
 function rk_menu() {
-    if(has_nav_menu('rk-main-nav')):
+    if(has_nav_menu('rakata-main-nav')):
 		wp_nav_menu( array( 
-			'theme_location' => 'rk-main-nav', 
+			'theme_location' => 'rakata-main-nav', 
 			'menu_class' => 'menu',
 			'container' => ''
 		) );
@@ -156,28 +165,6 @@ function rk_head(){
 	else:
 	?><link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri();?>/favicon.ico" /><?php
 	endif;
-	
-	// Google Site Verification
-	if(get_option('rk_options_gweb_code')) :
-	?><meta name="google-site-verification" content="<?php echo get_option('rk_options_gweb_code'); ?>" /><?php
-	endif;
-	
-	// Bing Site Validation
-	if(get_option('rk_options_bing_code')) :
-	?><meta name='msvalidate.01' content='<?php echo get_option('rk_options_bing_code'); ?>' /><?php
-	endif;
-	
-	// Pinterest Site Verification
-	if(get_option('rk_options_pinterest_code')) :
-	?><meta name='p:domain_verify' content='<?php echo get_option('rk_options_pinterest_code'); ?>' /><?php
-	endif;
-	
-	// Google Analytics Code
-	if(get_option('rk_options_ga_code')) :
-	?><script type="text/javascript"><?php
-		echo get_option('rk_options_ga_code');
-	?></script><?php
-	endif;
 }
 
 // Foot
@@ -188,5 +175,5 @@ function rk_foot(){
 	?><p><a href="<?php echo home_url('/'); ?>" title="<?php bloginfo('name'); ?>"><?php bloginfo('name'); ?></a> - <?php _e( 'Copyright &copy;', 'rakata' ); ?> <?php echo date('Y');?></p><?php
 	endif;
 	
-	?><p><?php printf( __('Powered by <a href="http://wordpress.org/" title="%1$s">%2$s</a> | <a href="http://habibimustafa.com/" title="%3$s">%4$s Themes</a>', 'rakata'), esc_attr( 'A Semantic Personal Publishing Platform'), 'WordPress', esc_attr( 'Rakata Lite Themes by Habibi Mustafa'),'rakata');?></p><?php
+	?><p><?php printf( __('Powered by <a href="http://wordpress.org/" title="%1$s">%2$s</a> | <a href="http://habibimustafa.com/" title="%3$s">%4$s Themes</a>', 'rakata'), esc_attr( 'A Semantic Personal Publishing Platform'), 'WordPress', esc_attr( 'Rakata Lite Themes by Habibi Mustafa'),'Rakata');?></p><?php
 }

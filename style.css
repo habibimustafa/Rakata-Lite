@@ -17,8 +17,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 /*-----------------------------------------------------------------------------------*/
 /* = /layout
 /*-----------------------------------------------------------------------------------*/
-@import url('css/grid.css');
-body {background:#FFFFFF;}
+body {background:#EFEFEF;}
 body .row {width:960px;}
 #container {margin:20px auto;background:white;}
 #col-left, #col-right {}

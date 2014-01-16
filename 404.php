@@ -1,6 +1,12 @@
-<?php get_header(); ?>
+<?php
+/**
+ * 404.php
+ * @package Rakata Lite
+ * @since Rakata Lite 0.0.1
+ */
+get_header(); ?>
 	<div id="inner">
-		<?php //get_sidebar('topside'); ?>
+		<?php get_sidebar('topside'); ?>
 		<div id="main">
             	<article id="post-0" class="post error404 not-found">
 					<hgroup>

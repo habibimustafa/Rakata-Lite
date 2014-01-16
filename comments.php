@@ -1,4 +1,9 @@
 <?php
+/**
+ * comments.php
+ * @package Rakata Lite
+ * @since Rakata Lite 0.0.1
+ */
 if (!empty($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']))
 	die ('Please do not load this page directly. Thanks!');
 

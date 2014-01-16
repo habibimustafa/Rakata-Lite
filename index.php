@@ -1,6 +1,12 @@
-<?php get_header(); ?>
+<?php
+/**
+ * index.php
+ * @package Rakata Lite
+ * @since Rakata Lite 0.0.3
+ */
+get_header(); ?>
 	<div id="inner">
-		<?php //get_sidebar('topside'); ?>
+		<?php get_sidebar('topside'); ?>
 		<div id="main">
         	<?php if(have_posts()) : ?>
         	

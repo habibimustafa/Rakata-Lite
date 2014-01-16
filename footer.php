@@ -1,3 +1,10 @@
+<?php
+/**
+ * footer.php
+ * @package Rakata Lite
+ * @since Rakata Lite 0.0.1
+ */
+?>
 			</section>
 			<!-- End Mainpage -->
 			
