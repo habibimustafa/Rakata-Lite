@@ -160,20 +160,11 @@ function rk_post_image_single(){
 // Head
 function rk_head(){
 	//Favicon
-	if(get_option('rk_options_favicon')) :
-	?><link rel="shortcut icon" href="<?php echo get_option('rk_options_favicon'); ?>" /><?php
-	else:
 	?><link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri();?>/favicon.ico" /><?php
-	endif;
 }
 
 // Foot
 function rk_foot(){
-	if(get_option('rk_options_footer_text')) :
-		echo "<p>".get_option('rk_options_footer_text')."</p>";
-	else:
-	?><p><a href="<?php echo home_url('/'); ?>" title="<?php bloginfo('name'); ?>"><?php bloginfo('name'); ?></a> - <?php _e( 'Copyright &copy;', 'rakata' ); ?> <?php echo date('Y');?></p><?php
-	endif;
-	
-	?><p><?php printf( __('Powered by <a href="http://wordpress.org/" title="%1$s">%2$s</a> | <a href="http://habibimustafa.com/" title="%3$s">%4$s Themes</a>', 'rakata'), esc_attr( 'A Semantic Personal Publishing Platform'), 'WordPress', esc_attr( 'Rakata Lite Themes by Habibi Mustafa'),'Rakata');?></p><?php
+	?><p><a href="<?php echo home_url('/'); ?>" title="<?php bloginfo('name'); ?>"><?php bloginfo('name'); ?></a> - <?php _e( 'Copyright &copy;', 'rakata' ); ?> <?php echo date('Y');?></p>
+	<p><?php printf( __('Powered by <a href="http://wordpress.org/" title="%1$s">%2$s</a> | <a href="http://habibimustafa.com/" title="%3$s">%4$s Themes</a>', 'rakata'), esc_attr( 'A Semantic Personal Publishing Platform'), 'WordPress', esc_attr( 'Rakata Lite Themes by Habibi Mustafa'),'rakata');?></p><?php
 }
