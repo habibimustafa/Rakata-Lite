@@ -281,8 +281,9 @@ blockquote.right{
 	/*border: 1px solid #DDDDDD;*/
 }
 #main .loop .post-title {
-	font-size: 24px;
 	margin: 0;
+	overflow: hidden;
+	font-size: 24px;
 }
 #main .loop .image {
 	float: left;
