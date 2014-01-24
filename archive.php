@@ -15,23 +15,23 @@ get_header(); ?>
 				
 				<?php $post = $posts[0]; // Hack. Set $post so that the_date() wogps. ?>
 				<?php /* If this is a category archive */ if (is_category()) { ?>
-				<h1 class="page-title"><?php printf("Category Archives '%s'", single_cat_title('',false)); ?></h1>
+				<h1 class="archive-title"><?php printf("Category Archives '%s'", single_cat_title('',false)); ?></h1>
 				<?php /* If this is a tag archive */ } elseif( is_tag('',false) ) { ?>
-				<h1 class="page-title"><?php printf("Tags Archives '%s'", single_tag_title()); ?></h1>
+				<h1 class="archive-title"><?php printf("Tags Archives '%s'", single_tag_title()); ?></h1>
 				<?php /* If this is a daily archive */ } elseif (is_day()) { ?>
-				<h1 class="page-title">Arsip Hari <?php get_the_date(); ?></h1>
+				<h1 class="archive-title"><?php printf(__( 'Daily Archives: %s', 'rakata' ), '<span>' . get_the_date() . '</span>' ); ?></h1>
 				<?php /* If this is a monthly archive */ } elseif (is_month()) { ?>
-				<h1 class="page-title">Arsip Bulan <?php get_the_date( _x( 'F Y', 'monthly archives date format', 'rakata' ) ); ?></h1>
+				<h1 class="archive-title"><?php printf( __( 'Monthly Archives: %s', 'rakata' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'rakata' ) ) . '</span>' ); ?></h1>
 				<?php /* If this is a yearly archive */ } elseif (is_year()) { ?>
-				<h1 class="page-title">Arsip Tahun <?php get_the_date( _x( 'Y', 'yearly archives date format', 'rakata' ) ); ?></h1>
+				<h1 class="archive-title"><?php printf( __( 'Yearly Archives: %s', 'rakata' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'rakata' ) ) . '</span>' ); ?></h1>
 				<?php /* If this is an author archive */ } elseif (is_author()) { ?>
-				<h1 class="page-title">Arsip Penulis</h1>
+				<h1 class="archive-title"><?php printf( __( 'Author Archives: %s', 'rakata' ), '<span class="vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( "ID" ) ) ) . '" title="' . esc_attr( get_the_author() ) . '" rel="me">' . get_the_author() . '</a></span>' ); ?></h1>
 				<?php /* If this is a paged archive */ } elseif (isset($_GET['paged']) && !empty($_GET['paged'])) { ?>
-				<h1 class="page-title">Arsip Blog</h1>
+				<h1 class="archive-title"><?php _e( 'Blog Archives', 'rakata' ); ?></h1>
 				<?php } ?>
 			  </hgroup>
 			  
-			  <div class="page">
+			  <div class="archive page">
               <?php while (have_posts()) : the_post() ?>
               <div class="loop">
             	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
