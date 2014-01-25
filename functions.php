@@ -69,9 +69,10 @@ function rakata_widgets_init() {
 }
 add_action( 'widgets_init', 'rakata_widgets_init');
 
-// The Functions
-
-// Title
+/**
+ * Customize WP Title
+ * @since Rakata Lite 0.0.3
+ */
 function rk_title(){
 	global $page, $paged;
 	wp_title( '|', true, 'right' );
@@ -90,6 +91,7 @@ function rk_title(){
 		
 	echo $title;
 }
+add_filter('wp_title', 'rk_title');
 
 // Logo
 function rk_logo(){
