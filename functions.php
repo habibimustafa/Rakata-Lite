@@ -14,14 +14,7 @@ add_action( 'wp_enqueue_scripts', 'rakata_enqueue_scripts' );
 function rakata_enqueue_scripts() {
 	wp_enqueue_style( 'grid', get_template_directory_uri() . '/css/grid.css', array(), RAKATA);
 	wp_enqueue_style( 'rakata', get_template_directory_uri() . '/style.css', array(), RAKATA);
-    
-    if (!is_admin()) {
-        // comment out the next two lines to load the local copy of jQuery
-        wp_deregister_script('jquery');
-        wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', false, '1.10.2');
-        wp_enqueue_script('jquery');
-    }
-	
+    	
     if ( is_singular() && comments_open() && get_option('thread_comments')) {
 	wp_enqueue_script('comment-reply');
     }
