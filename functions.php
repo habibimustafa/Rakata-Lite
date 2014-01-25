@@ -6,6 +6,12 @@
  */
 
 /**
+ * Rakata Lite Theme Options
+ * @since Rakata Lite 0.0.4
+ */
+include('options.php');
+
+/**
  * Enqueue scripts and styles
  * @since Rakata Lite 0.0.3
  */
@@ -18,17 +24,6 @@ function rakata_enqueue_scripts() {
     if ( is_singular() && comments_open() && get_option('thread_comments')) {
 	wp_enqueue_script('comment-reply');
     }
-}
-
-/**
- * HTML5 js for IE
- * @since Rakata Lite 0.0.4
- */
-add_action( 'wp_head', 'rakata_print_ie_scripts');
-function rakata_print_ie_scripts() {
-  ?>
-<!--[if lt IE 9]> <script src="<?php echo get_template_directory_uri(); ?>/js/html5.js" type="text/javascript"></script> <![endif]-->
-  <?php
 }
 
 /**
@@ -50,6 +45,30 @@ function rakata_setup() {
 	) );
 }
 add_action( 'after_setup_theme', 'rakata_setup' );
+
+/**
+ * Custom Favicon
+ * @since Rakata Lite 0.0.4
+ */
+add_action('wp_head', 'rk_custom_favicon', 5);
+function rk_custom_favicon() {
+	if (get_option('rk_options_favicon'))
+		echo '<link rel="shortcut icon" href="'. esc_url( get_option('rk_options_favicon') ) .'">'."\n";
+	else:
+		?><link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri();?>/favicon.ico" /><?php
+	endif;		
+}
+
+/**
+ * HTML5 js for IE
+ * @since Rakata Lite 0.0.4
+ */
+add_action( 'wp_head', 'rakata_print_ie_scripts');
+function rakata_print_ie_scripts() {
+  ?>
+<!--[if lt IE 9]> <script src="<?php echo get_template_directory_uri(); ?>/js/html5.js" type="text/javascript"></script> <![endif]-->
+  <?php
+}
 
 /**
  * Register Sidebar
@@ -104,12 +123,6 @@ function rk_title(){
 }
 add_filter('wp_title', 'rk_title');
 
-/**
- * Rakata Lite Theme Options
- * @since Rakata Lite 0.4
- */
-include('options.php');
-
 // Logo
 function rk_logo(){
 	if(get_option('rk_options_logo')) : ?>
@@ -118,12 +131,6 @@ function rk_logo(){
 		<h1 class="title"><a href="<?php echo esc_url(home_url('/')); ?>" title="<?php bloginfo('name'); ?>" class="site-title"><?php bloginfo('name'); ?></a></h1>
         <h2 class="desc"><?php bloginfo('description'); ?></h2>
 	<?php endif;
-}
-
-// Head
-function rk_head(){
-	//Favicon
-	?><link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri();?>/favicon.ico" /><?php
 }
 
 // Foot
