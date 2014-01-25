@@ -9,7 +9,7 @@
  * Rakata Lite Theme Options
  * @since Rakata Lite 0.0.4
  */
-include('options.php');
+//include('options.php');
 
 /**
  * Enqueue scripts and styles
@@ -52,10 +52,10 @@ add_action( 'after_setup_theme', 'rakata_setup' );
  */
 add_action('wp_head', 'rk_custom_favicon', 5);
 function rk_custom_favicon() {
-	if (get_option('rk_options_favicon'))
+	if (get_option('rk_options_favicon')):
 		echo '<link rel="shortcut icon" href="'. esc_url( get_option('rk_options_favicon') ) .'">'."\n";
 	else:
-		?><link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri();?>/favicon.ico" /><?php
+		echo '<link rel="shortcut icon" href="'. get_stylesheet_directory_uri() .'/favicon.ico" />'."\n";
 	endif;		
 }
 

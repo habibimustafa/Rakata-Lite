@@ -27,14 +27,14 @@ $shortname = "rk_options";
 		"desc" => "Enter the link to your logo image",
 		"id" => $shortname."_logo",
 		"type" => "text",
-		"std" => get_bloginfo('stylesheet_directory')."/logo.png"
+		"std" => get_stylesheet_directory_uri()."/logo.png"
 	),
 	array( 
 		"name" => __("Custom Favicon", 'rakata'),
 		"desc" => "A favicon is a 16x16 pixel icon that represents your site; paste the URL to a .ico image that you want to use as the image",
 		"id" => $shortname."_favicon",
 		"type" => "text",
-		"std" => get_bloginfo('stylesheet_directory')."/favicon.ico"
+		"std" => get_stylesheet_directory_uri()."/favicon.ico"
 	),
 	array( 
 		"type" => "close"
@@ -62,12 +62,12 @@ function rk_add_admin() {
 		}
 	}
 	
-	add_menu_page($themename, $themename, 'administrator', basename(__FILE__), 'rk_admin', '');
+	add_theme_page($themename, $themename, 'administrator', basename(__FILE__), 'rk_admin', '');
 }
 
 
 function rk_add_init() {
-	$file_dir=get_bloginfo('template_directory');
+	$file_dir=get_template_directory_uri();
 	wp_enqueue_style("functions", $file_dir."/css/options.css", false, "1.0", "all");
 	wp_enqueue_script("rk_script", $file_dir."/js/rakata.js", false, "1.0");
 }
