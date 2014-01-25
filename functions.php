@@ -45,21 +45,21 @@ add_action( 'after_setup_theme', 'rakata_setup' );
  * @since Rakata Lite 0.0.3
  */
 function rakata_widgets_init() {
-	register_sidebar(array('name'=>'Left Sidebar',
+	register_sidebar(array('name'=>__( 'Left Sidebar', 'rakata' ),
 	'id' => 'leftside',
 	'before_widget' => '<div id="%1$s" class="sideitem %2$s">',
 	'after_widget' => '</div>',
 	'before_title' => '<h3 class="sidetitle">',
 	'after_title' => '</h3>',
 	));
-	register_sidebar(array('name'=>'Top Sidebar',
+	register_sidebar(array('name'=>__( 'Top Sidebar', 'rakata' ),
 	'id' => 'topside',
 	'before_widget' => '<div id="%1$s" class="sideitem %2$s">',
 	'after_widget' => '</div>',
 	'before_title' => '<h3 class="sidetitle">',
 	'after_title' => '</h3>',
 	));
-	register_sidebar(array('name'=>'Bottom Sidebar',
+	register_sidebar(array('name'=>__( 'Bottom Sidebar', 'rakata' ),
 	'id' => 'botside',
 	'before_widget' => '<div id="%1$s" class="sideitem %2$s">',
 	'after_widget' => '</div>',
