@@ -94,9 +94,9 @@ function rk_title(){
 // Logo
 function rk_logo(){
 	if(get_option('rk_options_logo')) : ?>
-		<h1 class="title"><a href="<?php echo home_url('/'); ?>" title="<?php bloginfo('name'); ?>" class="site-title"><img src="<?php echo get_option('rk_options_logo'); ?>" alt="<?php bloginfo('name'); ?>" /></a></h1>
+		<h1 class="title"><a href="<?php echo esc_url(home_url('/')); ?>" title="<?php bloginfo('name'); ?>" class="site-title"><img src="<?php echo get_option('rk_options_logo'); ?>" alt="<?php bloginfo('name'); ?>" /></a></h1>
 	<?php else: ?>
-		<h1 class="title"><a href="<?php echo home_url('/'); ?>" title="<?php bloginfo('name'); ?>" class="site-title"><?php bloginfo('name'); ?></a></h1>
+		<h1 class="title"><a href="<?php echo esc_url(home_url('/')); ?>" title="<?php bloginfo('name'); ?>" class="site-title"><?php bloginfo('name'); ?></a></h1>
         <h2 class="desc"><?php bloginfo('description'); ?></h2>
 	<?php endif;
 }
@@ -158,6 +158,6 @@ function rk_head(){
 
 // Foot
 function rk_foot(){
-	?><p><a href="<?php echo home_url('/'); ?>" title="<?php bloginfo('name'); ?>"><?php bloginfo('name'); ?></a> - <?php _e( 'Copyright &copy;', 'rakata' ); ?> <?php echo date('Y');?></p>
+	?><p><a href="<?php echo esc_url(home_url('/')); ?>" title="<?php bloginfo('name'); ?>"><?php bloginfo('name'); ?></a> - <?php _e( 'Copyright &copy;', 'rakata' ); ?> <?php echo date('Y');?></p>
 	<p><?php printf( __('Powered by <a href="http://wordpress.org/" title="%1$s">%2$s</a> | <a href="http://habibimustafa.com/" title="%3$s">%4$s Themes</a>', 'rakata'), esc_attr( 'A Semantic Personal Publishing Platform'), 'WordPress', esc_attr( 'Rakata Lite Themes by Habibi Mustafa'),'rakata');?></p><?php
 }
