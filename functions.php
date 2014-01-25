@@ -9,7 +9,7 @@
  * Rakata Lite Theme Options
  * @since Rakata Lite 0.0.4
  */
-//include('options.php');
+include('options.php');
 
 /**
  * Enqueue scripts and styles
