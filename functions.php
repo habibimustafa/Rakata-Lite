@@ -93,6 +93,12 @@ function rk_title(){
 }
 add_filter('wp_title', 'rk_title');
 
+/**
+ * Rakata Lite Theme Options
+ * @since Rakata Lite 0.4
+ */
+include('options.php');
+
 // Logo
 function rk_logo(){
 	if(get_option('rk_options_logo')) : ?>
@@ -101,6 +107,18 @@ function rk_logo(){
 		<h1 class="title"><a href="<?php echo esc_url(home_url('/')); ?>" title="<?php bloginfo('name'); ?>" class="site-title"><?php bloginfo('name'); ?></a></h1>
         <h2 class="desc"><?php bloginfo('description'); ?></h2>
 	<?php endif;
+}
+
+// Head
+function rk_head(){
+	//Favicon
+	?><link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri();?>/favicon.ico" /><?php
+}
+
+// Foot
+function rk_foot(){
+	?><p><a href="<?php echo esc_url(home_url('/')); ?>" title="<?php bloginfo('name'); ?>"><?php bloginfo('name'); ?></a> - <?php _e( 'Copyright &copy;', 'rakata' ); ?> <?php echo date('Y');?></p>
+	<p><?php printf( __('Powered by <a href="http://wordpress.org/" title="%1$s">%2$s</a> | <a href="http://habibimustafa.com/" title="%3$s">%4$s Themes</a>', 'rakata'), esc_attr( 'A Semantic Personal Publishing Platform'), 'WordPress', esc_attr( 'Rakata Lite Themes by Habibi Mustafa'),'rakata');?></p><?php
 }
 
 // Menu
@@ -150,16 +168,4 @@ function rk_post_image_single(){
 		$args = array('class' => 'post-img aligncenter automargin','alt'	=> the_title_attribute('echo=0'));
 		the_post_thumbnail('post-single', $args );
 	}
-}
-
-// Head
-function rk_head(){
-	//Favicon
-	?><link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri();?>/favicon.ico" /><?php
-}
-
-// Foot
-function rk_foot(){
-	?><p><a href="<?php echo esc_url(home_url('/')); ?>" title="<?php bloginfo('name'); ?>"><?php bloginfo('name'); ?></a> - <?php _e( 'Copyright &copy;', 'rakata' ); ?> <?php echo date('Y');?></p>
-	<p><?php printf( __('Powered by <a href="http://wordpress.org/" title="%1$s">%2$s</a> | <a href="http://habibimustafa.com/" title="%3$s">%4$s Themes</a>', 'rakata'), esc_attr( 'A Semantic Personal Publishing Platform'), 'WordPress', esc_attr( 'Rakata Lite Themes by Habibi Mustafa'),'rakata');?></p><?php
 }
