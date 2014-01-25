@@ -21,6 +21,17 @@ function rakata_enqueue_scripts() {
 }
 
 /**
+ * HTML5 js for IE
+ * @since Rakata Lite 0.0.4
+ */
+add_action( 'wp_head', 'rakata_print_ie_scripts');
+function rakata_print_ie_scripts() {
+  ?>
+<!--[if lt IE 9]> <script src="<?php echo get_template_directory_uri(); ?>/js/html5.js" type="text/javascript"></script> <![endif]-->
+  <?php
+}
+
+/**
  * Setup function
  * @since Rakata Lite 0.0.3
  */
