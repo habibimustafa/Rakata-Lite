@@ -23,14 +23,14 @@ $shortname = "rk_options";
 		"type" => "open"
 	),
 	array( 
-		"name" => "Logo URL",
+		"name" => __("Logo URL", 'rakata'),
 		"desc" => "Enter the link to your logo image",
 		"id" => $shortname."_logo",
 		"type" => "text",
 		"std" => get_stylesheet_directory_uri()."/logo.png"
 	),
 	array( 
-		"name" => "Custom Favicon",
+		"name" => __("Custom Favicon", 'rakata'),
 		"desc" => "A favicon is a 16x16 pixel icon that represents your site; paste the URL to a .ico image that you want to use as the image",
 		"id" => $shortname."_favicon",
 		"type" => "text",
