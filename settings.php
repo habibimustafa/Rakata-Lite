@@ -1,6 +1,6 @@
 <?php
 /**
- * options.php
+ * Settings.php
  * @package Rakata Lite
  * @since Rakata Lite 0.0.4
  */
@@ -23,14 +23,14 @@ $shortname = "rk_options";
 		"type" => "open"
 	),
 	array( 
-		"name" => __("Logo URL", 'rakata'),
+		"name" => "Logo URL",
 		"desc" => "Enter the link to your logo image",
 		"id" => $shortname."_logo",
 		"type" => "text",
 		"std" => get_stylesheet_directory_uri()."/logo.png"
 	),
 	array( 
-		"name" => __("Custom Favicon", 'rakata'),
+		"name" => "Custom Favicon",
 		"desc" => "A favicon is a 16x16 pixel icon that represents your site; paste the URL to a .ico image that you want to use as the image",
 		"id" => $shortname."_favicon",
 		"type" => "text",
@@ -39,6 +39,22 @@ $shortname = "rk_options";
 	array( 
 		"type" => "close"
 	),
+
+	
+	array( "name" => "Footer",
+		"type" => "section"),
+	array( 
+		"type" => "open"
+	),
+	array( 
+		"name" => "Footer copyright text",
+		"desc" => "Enter text used in the right side of the footer. It can be HTML",
+		"id" => $shortname."_footer_text",
+		"type" => "text",
+		"std" => ""),
+	array( 
+		"type" => "close"
+	)
 );
 
 
@@ -67,7 +83,7 @@ function rk_add_admin() {
 
 
 function rk_add_init() {
-	$file_dir=get_template_directory_uri();
+	$file_dir=get_bloginfo('template_directory');
 	wp_enqueue_style("functions", $file_dir."/css/options.css", false, "1.0", "all");
 	wp_enqueue_script("rk_script", $file_dir."/js/rakata.js", false, "1.0");
 }
@@ -152,7 +168,7 @@ function rk_admin() {
 			</p>
 		</form>
 	</div>
-<?php } 
-
+<?php } ?>
+<?php
 add_action('admin_init', 'rk_add_init');
 add_action('admin_menu', 'rk_add_admin');

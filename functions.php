@@ -9,7 +9,7 @@
  * Rakata Lite Theme Options
  * @since Rakata Lite 0.0.4
  */
-include('options.php');
+include('settings.php');
 
 /**
  * Enqueue scripts and styles
@@ -50,7 +50,7 @@ add_action( 'after_setup_theme', 'rakata_setup' );
  * Custom Favicon
  * @since Rakata Lite 0.0.4
  */
-add_action('wp_head', 'rk_custom_favicon', 5);
+add_action('wp_head', 'rk_custom_favicon', 1);
 function rk_custom_favicon() {
 	if (get_option('rk_options_favicon')):
 		echo '<link rel="shortcut icon" href="'. esc_url( get_option('rk_options_favicon') ) .'">'."\n";
@@ -65,9 +65,7 @@ function rk_custom_favicon() {
  */
 add_action( 'wp_head', 'rakata_print_ie_scripts');
 function rakata_print_ie_scripts() {
-  ?>
-<!--[if lt IE 9]> <script src="<?php echo get_template_directory_uri(); ?>/js/html5.js" type="text/javascript"></script> <![endif]-->
-  <?php
+  ?><!--[if lt IE 9]> <script src="<?php echo get_template_directory_uri(); ?>/js/html5.js" type="text/javascript"></script> <![endif]--><?php
 }
 
 /**
@@ -103,23 +101,19 @@ add_action( 'widgets_init', 'rakata_widgets_init');
  * Customize WP Title
  * @since Rakata Lite 0.0.3
  */
-function rk_title(){
+function rk_title( $title ) {
 	global $page, $paged;
-	wp_title( '|', true, 'right' );
-	
-	// Add the blog name.
-	$title = bloginfo( 'name' );
 
-	// Add the blog description for the home/front page.
-	$site_description = get_bloginfo( 'description', 'display' );
-	if ( $site_description && ( is_home() || is_front_page() ) )
-		$title .= " | $site_description";
+	if ( is_feed() )
+		return $title;
 
-	// Add a page number if necessary:
-	if ( $paged >= 2 || $page >= 2 )
-		$title .= ' | ' . sprintf( __( 'Page %s', 'rakata' ), max( $paged, $page ) );
-		
-	echo $title;
+	$site_description = get_bloginfo( 'description' );
+
+	$filtered_title = $title . get_bloginfo( 'name' );
+	$filtered_title .= ( ! empty( $site_description ) && ( is_home() || is_front_page() ) ) ? ' | ' . $site_description: '';
+	$filtered_title .= ( 2 <= $paged || 2 <= $page ) ? ' | ' . sprintf( __( 'Page %s' ), max( $paged, $page ) ) : '';
+
+	return $filtered_title;
 }
 add_filter('wp_title', 'rk_title');
 
