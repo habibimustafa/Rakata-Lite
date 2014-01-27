@@ -39,22 +39,6 @@ $shortname = "rk_options";
 	array( 
 		"type" => "close"
 	),
-
-	
-	array( "name" => "Footer",
-		"type" => "section"),
-	array( 
-		"type" => "open"
-	),
-	array( 
-		"name" => "Footer copyright text",
-		"desc" => "Enter text used in the right side of the footer. It can be HTML",
-		"id" => $shortname."_footer_text",
-		"type" => "text",
-		"std" => ""),
-	array( 
-		"type" => "close"
-	)
 );
 
 
