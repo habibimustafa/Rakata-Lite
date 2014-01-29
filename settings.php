@@ -67,7 +67,7 @@ function rk_add_admin() {
 
 
 function rk_add_init() {
-	$file_dir=get_bloginfo('template_directory');
+	$file_dir=get_template_directory_uri();
 	wp_enqueue_style("functions", $file_dir."/css/options.css", false, "1.0", "all");
 	wp_enqueue_script("rk_script", $file_dir."/js/rakata.js", false, "1.0");
 }
@@ -136,7 +136,7 @@ function rk_admin() {
 			  
 			  case 'section': $i++; ?>
 				<div class="rk_section">
-				<div class="rk_title"><h3><img src="<?php bloginfo('template_directory')?>/img/trans.png" class="inactive" alt="""><?php echo $value['name']; ?></h3><span class="submit"><input name="save<?php echo $i; ?>" type="submit" value="Save changes" />
+				<div class="rk_title"><h3><img src="<?php get_template_directory_uri()?>/img/trans.png" class="inactive" alt="""><?php echo $value['name']; ?></h3><span class="submit"><input name="save<?php echo $i; ?>" type="submit" value="Save changes" />
 				</span><div class="clearfix"></div></div>
 				<div class="rk_options">
 			  <?php break;

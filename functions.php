@@ -16,7 +16,7 @@ include('settings.php');
  * @since Rakata Lite 0.0.3
  */
 define( 'RAKATA_THEME', 'Rakata Lite' );
-define( 'RAKATA', '0.0.3' );
+define( 'RAKATA', '0.0.4' );
 add_action( 'wp_enqueue_scripts', 'rakata_enqueue_scripts' );
 function rakata_enqueue_scripts() {
 	wp_enqueue_style( 'grid', get_template_directory_uri() . '/css/grid.css', array(), RAKATA);
