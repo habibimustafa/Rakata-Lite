@@ -55,8 +55,6 @@ add_action('wp_head', 'rk_custom_favicon', 1);
 function rk_custom_favicon() {
 	if (get_option('rk_options_favicon')):
 		echo '<link rel="shortcut icon" href="'. esc_url( get_option('rk_options_favicon') ) .'">'."\n";
-	else:
-		echo '<link rel="shortcut icon" href="'. get_stylesheet_directory_uri() .'/favicon.ico" />'."\n";
 	endif;		
 }
 
