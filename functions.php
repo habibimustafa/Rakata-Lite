@@ -16,7 +16,7 @@ include('settings.php');
  * @since Rakata Lite 0.0.3
  */
 define( 'RAKATA_THEME', 'Rakata Lite' );
-define( 'RAKATA', '0.0.4' );
+define( 'RAKATA', '0.0.5' );
 add_action( 'wp_enqueue_scripts', 'rakata_enqueue_scripts' );
 function rakata_enqueue_scripts() {
 	wp_enqueue_style( 'grid', get_template_directory_uri() . '/css/grid.css', array(), RAKATA);
@@ -128,7 +128,8 @@ function rk_logo(){
 
 // Foot
 function rk_foot(){
-	?><p><a href="<?php echo home_url('/') ?>" title="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>"><?php bloginfo('name'); ?></a> | <a href="<?php echo esc_url(__('http://habibimustafa.com','rakata')); ?>" title="<?php esc_attr_e('Rakata', 'rakata'); ?>"><?php  echo RAKATA_THEME; ?></a> <?php  _e( 'Proudly powered by', 'rakata' ); ?>  <a href="<?php echo esc_url(__('http://wordpress.org','rakata')); ?>" title="<?php esc_attr_e('WordPress', 'rakata'); ?>"><?php printf('WordPress', 'rakata'); ?></a></p><?php
+	?><p><a href="<?php echo esc_url(__('http://habibimustafa.com','rakata')); ?>" title="<?php esc_attr_e('Rakata', 'rakata'); ?>"><?php  echo RAKATA_THEME; ?></a> Theme, Copyright (C) <?php echo date('Y');?> <a href="<?php echo esc_url(__('http://habibimustafa.com','rakata')); ?>" title="<?php esc_attr_e('Rakata', 'rakata'); ?>">HABIBI MUSTAFA</a></p>
+	<p><a href="<?php echo esc_url(__('http://habibimustafa.com','rakata')); ?>" title="<?php esc_attr_e('Rakata', 'rakata'); ?>"><?php  echo RAKATA_THEME; ?></a> theme is licensed under the GPL.</p><?php
 }
 
 // Menu
